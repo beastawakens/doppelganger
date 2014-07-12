@@ -1,7 +1,48 @@
-@(message: String)
+@(message: String, customerForm: play.data.Form[Customer])
 
-@main("Welcome to Doppleganger") {
+@import helper._
+@import helper.twitterBootstrap._
 
-	Duplicates, bitches!
+@main("Welcome to Dopplegänger") {
 
+	<div class="container">
+	
+		<div class="jumbotron">
+			<h1>@message</h1>
+		</div>
+		
+		<h2>API</h2>
+		
+		@routes.Customers.list().method <a href="@routes.Customers.list()">@routes.Customers.list()</a> - all customers<br/>
+		@routes.Customers.add().method <a href="@routes.Customers.add()">@routes.Customers.add()</a> - create new customer<br/>
+		@routes.Customers.get(1).method <a href="@routes.Customers.get(1)">@routes.Customers.get(1)</a> - retrieve specific customer<br/>
+		@routes.Customers.update(1).method <a href="@routes.Customers.update(1)">@routes.Customers.update(1)</a> - update existing customer<br/>
+		@routes.Customers.delete(1).method <a href="@routes.Customers.delete(1)">@routes.Customers.delete(1)</a> - delete specific customer<br/>
+		
+		
+		
+		<hr/>
+		
+		
+		
+		 <h2>Add a new customer</h2>
+	    
+	    @form(routes.Doppelganger.newCustomer()) {
+	        
+	        @inputText(customerForm("firstName")) 
+	        @inputText(customerForm("lastName")) 
+	        @inputRadioGroup(customerForm("gender"), options(Gender.options()))
+			
+	        @inputText(customerForm("age")) 
+	        @inputText(customerForm("organization")) 
+	        @inputText(customerForm("jobTitle")) 
+	        @inputText(customerForm("location"))
+	         
+	        @select(customerForm("photoType"), options(PhotoType.options()))
+	        @inputText(customerForm("photoUrl")) 
+	        
+	        <input type="submit" value="Create">
+	        
+	    }
+	</div>
 }

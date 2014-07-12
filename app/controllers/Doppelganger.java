@@ -8,10 +8,14 @@ import views.html.index;
 
 public class Doppelganger extends Controller {
 	
-	Form<Customer> customerForm = Form.form(Customer.class);
+	static Form<Customer> customerForm = Form.form(Customer.class);
 
     public static Result index() {
-        return ok(index.render("Your new application is ready."));
+        return ok(views.html.index.render("Dopplegänger", customerForm));
+    }
+    
+    public static Result newCustomer() {
+    	return TODO;
     }
 
 }

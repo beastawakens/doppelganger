@@ -36,6 +36,11 @@ public class Customers extends Controller {
 		return created(outgoingJson);
 	}
 	
+	@BodyParser.Of(BodyParser.Json.class)
+	public static Result update(Long id) {
+		return TODO;
+	}
+	
 	public static Result delete(Long id) {
 		Customer customer = Customer.find.ref(id);
 		if (customer == null) {
