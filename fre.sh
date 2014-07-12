@@ -2,3 +2,4 @@
 play clean
 play dependencies
 play eclipse
+play dist
