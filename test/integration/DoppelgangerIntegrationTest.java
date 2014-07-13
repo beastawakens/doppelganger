@@ -12,7 +12,7 @@ import org.junit.Test;
 import play.libs.F.Callback;
 import play.test.TestBrowser;
 
-public class DopplegangerTest {
+public class DoppelgangerIntegrationTest {
 	
     private static final int PORT = 3333;
 	private static final String SERVER = "http://localhost:"+PORT;
@@ -22,7 +22,7 @@ public class DopplegangerTest {
         running(testServer(PORT, fakeApplication(inMemoryDatabase())), HTMLUNIT, new Callback<TestBrowser>() {
             public void invoke(TestBrowser browser) {
                 browser.goTo(SERVER);
-                assertThat(browser.pageSource()).contains("Dopplegänger");
+                assertThat(browser.pageSource()).contains("Doppelgänger");
             }
         });
     }

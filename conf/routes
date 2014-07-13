@@ -3,12 +3,11 @@
 # ~~~~
 
 # Home page
-GET     /                    controllers.Doppelganger.index(id: Long ?= 29418)
+GET     /                           controllers.Doppelganger.index(id: Long ?= 29418)
 POST    /newCustomer                controllers.Doppelganger.newCustomer()
-
+GET     /duplicates                 controllers.Doppelganger.duplicates()
 
 GET     /customers                  controllers.Customers.list()
-GET     /customers/duplicates       controllers.Customers.duplicates()
 POST    /customer					controllers.Customers.add()
 GET     /customer/:id               controllers.Customers.get(id: Long)
 PUT     /customer/:id               controllers.Customers.update(id: Long)

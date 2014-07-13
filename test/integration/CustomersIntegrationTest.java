@@ -14,7 +14,7 @@ import play.libs.F.Callback;
 import play.test.TestBrowser;
 import util.CustomerHelper;
 
-public class CustomersTest {
+public class CustomersIntegrationTest {
 	
     private static final int PORT = 3333;
 	private static final String SERVER = "http://localhost:"+PORT;

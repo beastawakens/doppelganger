@@ -27,10 +27,6 @@ public class Customers extends Controller {
 		}
 	}
 	
-	public static Result duplicates() {
-		return TODO;
-	}
-	
 	@BodyParser.Of(BodyParser.Json.class)
 	public static Result add() {
 		JsonNode incomingJson = request().body().asJson();

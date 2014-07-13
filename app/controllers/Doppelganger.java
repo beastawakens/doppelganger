@@ -6,8 +6,8 @@ import play.mvc.Controller;
 import play.mvc.Result;
 
 public class Doppelganger extends Controller {
-
-	private static final String TITLE = "Dopplegänger";
+	
+	private static final String TITLE = "Doppelgänger";
 	static Form<Customer> customerForm = Form.form(Customer.class);
 
 	public static Result index(Long id) {
@@ -22,6 +22,10 @@ public class Doppelganger extends Controller {
 			Long id = Customer.create(filledForm.get());
 			return redirect(routes.Doppelganger.index(id));
 		}
+	}
+	
+	public static Result duplicates() {
+		return TODO;
 	}
 
 }
