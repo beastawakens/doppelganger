@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public enum Gender {
-	male, female, unknown;
+	unknown, male, female;
 	
 	public static List<String> options() {
 		ArrayList<String> options = new ArrayList<String>();

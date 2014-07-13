@@ -27,9 +27,16 @@ public class Customers extends Controller {
 		}
 	}
 	
+	public static Result duplicates() {
+		return TODO;
+	}
+	
 	@BodyParser.Of(BodyParser.Json.class)
 	public static Result add() {
 		JsonNode incomingJson = request().body().asJson();
+		if (incomingJson == null) {
+			return badRequest();
+		}
 		Long newCustomerId = Customer.create(Json.fromJson(incomingJson, Customer.class));
 		ObjectNode outgoingJson = Json.newObject();
 		outgoingJson.put("id", newCustomerId);
@@ -38,7 +45,17 @@ public class Customers extends Controller {
 	
 	@BodyParser.Of(BodyParser.Json.class)
 	public static Result update(Long id) {
-		return TODO;
+		Customer originalCustomer = Customer.find.ref(id);
+		if (originalCustomer == null) {
+			return notFound();
+		} else {
+			JsonNode incomingJson = request().body().asJson();
+			if (incomingJson == null) {
+				return badRequest();
+			}	
+			Customer updatedCustomer = Customer.update(Json.fromJson(incomingJson, Customer.class), originalCustomer);
+			return ok(Json.toJson(updatedCustomer));
+		}
 	}
 	
 	public static Result delete(Long id) {

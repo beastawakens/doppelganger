@@ -1,4 +1,4 @@
-@(message: String, customerForm: play.data.Form[Customer])
+@(message: String, id: Long, customerForm: play.data.Form[Customer])
 
 @import helper._
 @import helper.twitterBootstrap._
@@ -15,9 +15,9 @@
 		
 		@routes.Customers.list().method <a href="@routes.Customers.list()">@routes.Customers.list()</a> - all customers<br/>
 		@routes.Customers.add().method <a href="@routes.Customers.add()">@routes.Customers.add()</a> - create new customer<br/>
-		@routes.Customers.get(1).method <a href="@routes.Customers.get(1)">@routes.Customers.get(1)</a> - retrieve specific customer<br/>
-		@routes.Customers.update(1).method <a href="@routes.Customers.update(1)">@routes.Customers.update(1)</a> - update existing customer<br/>
-		@routes.Customers.delete(1).method <a href="@routes.Customers.delete(1)">@routes.Customers.delete(1)</a> - delete specific customer<br/>
+		@routes.Customers.get(id).method <a href="@routes.Customers.get(id)">@routes.Customers.get(id)</a> - retrieve specific customer<br/>
+		@routes.Customers.update(id).method <a href="@routes.Customers.update(id)">@routes.Customers.update(id)</a> - update existing customer<br/>
+		@routes.Customers.delete(id).method <a href="@routes.Customers.delete(id)">@routes.Customers.delete(id)</a> - delete specific customer<br/>
 		
 		
 		

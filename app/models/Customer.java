@@ -5,6 +5,8 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
+import com.avaje.ebean.Ebean;
+
 import play.data.validation.Constraints.Required;
 import play.db.ebean.Model;
 
@@ -41,9 +43,26 @@ public class Customer extends Model {
 		customer.save();
 		return customer.id;
 	}
-
+	
 	public static void delete(Long id) {
 		find.ref(id).delete();
 	}
+	
+	public static Customer update(Customer updatedCustomer, Customer originalCustomer) {
+		originalCustomer.firstName = updatedCustomer.firstName;
+		originalCustomer.lastName = updatedCustomer.lastName;
+		originalCustomer.photoUrl = updatedCustomer.photoUrl;
+		originalCustomer.photoType = updatedCustomer.photoType;
+		originalCustomer.gender = updatedCustomer.gender;
+		originalCustomer.age = updatedCustomer.age;
+		originalCustomer.organization = updatedCustomer.organization;
+		originalCustomer.jobTitle = updatedCustomer.jobTitle;
+		originalCustomer.location = updatedCustomer.location;
+		
+		originalCustomer.save();
+		return originalCustomer;
+	}
+
+
 	
 }
