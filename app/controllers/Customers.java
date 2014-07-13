@@ -19,7 +19,7 @@ public class Customers extends Controller {
 	}
 	
 	public static Result get(Long id) {
-		Customer customer = Customer.find.ref(id);
+		Customer customer = Customer.find.byId(id);
 		if (customer == null) {
 			return notFound();
 		} else {
@@ -45,7 +45,7 @@ public class Customers extends Controller {
 	
 	@BodyParser.Of(BodyParser.Json.class)
 	public static Result update(Long id) {
-		Customer originalCustomer = Customer.find.ref(id);
+		Customer originalCustomer = Customer.find.byId(id);
 		if (originalCustomer == null) {
 			return notFound();
 		} else {
@@ -59,7 +59,7 @@ public class Customers extends Controller {
 	}
 	
 	public static Result delete(Long id) {
-		Customer customer = Customer.find.ref(id);
+		Customer customer = Customer.find.byId(id);
 		if (customer == null) {
 			return notFound();
 		} else {

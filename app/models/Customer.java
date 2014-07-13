@@ -32,7 +32,6 @@ public class Customer extends Model {
 	public String jobTitle;
 	public String location;
 	
-	
 	public static Finder<Long, Customer> find = new Finder<Long, Customer>(Long.class, Customer.class);
 	
 	public static List<Customer> all() {
@@ -62,7 +61,4 @@ public class Customer extends Model {
 		originalCustomer.save();
 		return originalCustomer;
 	}
-
-
-	
 }

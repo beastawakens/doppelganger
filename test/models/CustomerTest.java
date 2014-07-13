@@ -5,11 +5,12 @@ import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.CoreMatchers.nullValue;
 import static org.junit.Assert.*;
 import scala.util.Random;
+import util.Base;
 import util.CustomerHelper;
 
 import org.junit.Test;
 
-public class CustomerTest extends BaseModelTest {
+public class CustomerTest extends Base {
 	
 	@Test
 	public void shouldReturnNewIdUponCreation() throws Exception {
@@ -30,15 +31,13 @@ public class CustomerTest extends BaseModelTest {
 		
 		assertFalse(originalCustomer.firstName.equals(updatedCustomer.firstName));
 		assertFalse(originalCustomer.lastName.equals(updatedCustomer.lastName));
-		assertFalse(originalCustomer.jobTitle.equals(updatedCustomer.jobTitle));
+		assertFalse(originalCustomer.age.equals(updatedCustomer.age));
 		
 		Customer.update(updatedCustomer, originalCustomer);
 		
 		assertTrue(originalCustomer.firstName.equals(updatedCustomer.firstName));
 		assertTrue(originalCustomer.lastName.equals(updatedCustomer.lastName));
-		assertTrue(originalCustomer.jobTitle.equals(updatedCustomer.jobTitle));
-		assertTrue(originalCustomer.gender.equals(updatedCustomer.gender));
-		assertTrue(originalCustomer.photoType.equals(updatedCustomer.photoType));
+		assertTrue(originalCustomer.age.equals(updatedCustomer.age));
 	}
 
 }

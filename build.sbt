@@ -9,3 +9,6 @@ libraryDependencies ++= Seq(
 )     
 
 play.Project.playJavaSettings
+
+compile in Test <<= PostCompile(Test)
+
