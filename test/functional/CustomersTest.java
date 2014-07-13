@@ -58,7 +58,7 @@ public class CustomersTest extends Base {
 	public void shouldReturnSpecificCustomer() throws Exception {
 		Customer customer = CustomerHelper.newRandomCustomer();
 		customer.save();
-
+		
 		Result result = callAction(controllers.routes.ref.Customers.get(customer.id));
 		assertThat(status(result), is(OK));
 		assertThat(contentType(result), is("application/json"));

@@ -1,7 +1,5 @@
 package controllers;
 
-import java.util.Random;
-
 import models.Customer;
 import play.data.Form;
 import play.mvc.Controller;
