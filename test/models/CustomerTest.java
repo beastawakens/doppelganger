@@ -1,19 +1,44 @@
 package models;
 
-import static org.junit.Assert.*;
 import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.notNullValue;
+import static org.hamcrest.CoreMatchers.nullValue;
+import static org.junit.Assert.*;
+import scala.util.Random;
+import util.CustomerHelper;
 
 import org.junit.Test;
 
-public class CustomerTest {
+public class CustomerTest extends BaseModelTest {
 	
 	@Test
 	public void shouldReturnNewIdUponCreation() throws Exception {
+		Customer newCustomer = CustomerHelper.newRandomCustomer();
 		
-		Customer newCustomer = new Customer();
+		assertThat(newCustomer.id, is(nullValue()));
 		Long returnedId = Customer.create(newCustomer);
 		
-		assertThat(returnedId, is(0l));
+		assertThat(returnedId, is(notNullValue()));
+		assertThat(returnedId, is(newCustomer.id));
+	}
+	
+	@Test
+	public void shouldUpdateTheOriginalCustomer() throws Exception {
+		Customer originalCustomer = CustomerHelper.newRandomCustomer();
+		
+		Customer updatedCustomer = CustomerHelper.newRandomCustomer();
+		
+		assertFalse(originalCustomer.firstName.equals(updatedCustomer.firstName));
+		assertFalse(originalCustomer.lastName.equals(updatedCustomer.lastName));
+		assertFalse(originalCustomer.jobTitle.equals(updatedCustomer.jobTitle));
+		
+		Customer.update(updatedCustomer, originalCustomer);
+		
+		assertTrue(originalCustomer.firstName.equals(updatedCustomer.firstName));
+		assertTrue(originalCustomer.lastName.equals(updatedCustomer.lastName));
+		assertTrue(originalCustomer.jobTitle.equals(updatedCustomer.jobTitle));
+		assertTrue(originalCustomer.gender.equals(updatedCustomer.gender));
+		assertTrue(originalCustomer.photoType.equals(updatedCustomer.photoType));
 	}
 
 }
