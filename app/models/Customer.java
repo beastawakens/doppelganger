@@ -5,9 +5,13 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+
 import play.data.validation.Constraints.Required;
 import play.db.ebean.Model;
 
+@JsonInclude(Include.NON_NULL)
 @Entity
 public class Customer extends Model {
 

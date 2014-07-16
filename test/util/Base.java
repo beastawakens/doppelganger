@@ -6,6 +6,7 @@ import org.apache.commons.io.FileUtils;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
+import static org.mockito.MockitoAnnotations.initMocks;
 
 import com.avaje.ebean.Ebean;
 
@@ -40,5 +41,6 @@ public class Base {
 	public void createCleanDb() {
 		Ebean.execute(Ebean.createCallableSql(dropDdl));
 		Ebean.execute(Ebean.createCallableSql(createDdl));
+		initMocks(this);
 	}
 }

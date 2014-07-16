@@ -27,5 +27,15 @@ public class CustomerHelper {
 		
 		return customer;
 	}
+	
+	public static Customer newBasicCustomer() {
+		Random random = new Random();
+		
+		Customer customer = new Customer();
+		customer.firstName = new Character(random.nextPrintableChar()).toString();
+		customer.lastName = new Character(random.nextPrintableChar()).toString();
+
+		return customer;
+	}
 
 }

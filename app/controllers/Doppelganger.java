@@ -1,7 +1,6 @@
 package controllers;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Set;
 
 import models.Customer;
 import play.data.Form;
@@ -14,6 +13,7 @@ public class Doppelganger extends Controller {
 	
 	private static final String TITLE = "Doppelgänger";
 	static Form<Customer> customerForm = Form.form(Customer.class);
+	
 	private static DuplicateIdentifier duplicateIdentifier;
 
 
@@ -32,7 +32,8 @@ public class Doppelganger extends Controller {
 	}
 	
 	public static Result duplicates() {
-		List<Customer> duplicates = new ArrayList<Customer>();
+		Set<Set<Customer>> duplicates = getDuplicateIdentifier().getDuplicates();
+		
 		return ok(Json.toJson(duplicates));
 	}
 
