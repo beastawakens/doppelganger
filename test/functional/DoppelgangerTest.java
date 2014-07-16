@@ -19,8 +19,8 @@ import org.junit.Test;
 import org.mockito.Mock;
 
 import play.mvc.Result;
-import util.Base;
-import util.CustomerHelper;
+import testutils.Base;
+import testutils.CustomerHelper;
 import util.DuplicateIdentifier;
 import controllers.Doppelganger;
 

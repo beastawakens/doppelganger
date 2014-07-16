@@ -1,11 +1,17 @@
 package functional;
 
 import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.*;
-import static play.mvc.Http.Status.OK;
+import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
+import static play.mvc.Http.Status.BAD_REQUEST;
 import static play.mvc.Http.Status.CREATED;
 import static play.mvc.Http.Status.NOT_FOUND;
-import static play.test.Helpers.*;
+import static play.mvc.Http.Status.NO_CONTENT;
+import static play.mvc.Http.Status.OK;
+import static play.test.Helpers.callAction;
+import static play.test.Helpers.contentAsString;
+import static play.test.Helpers.contentType;
+import static play.test.Helpers.status;
 
 import java.util.List;
 import java.util.Random;
@@ -14,13 +20,13 @@ import models.Customer;
 
 import org.junit.Test;
 
-import com.fasterxml.jackson.databind.JsonNode;
-
 import play.libs.Json;
 import play.mvc.Result;
 import play.test.FakeRequest;
-import util.Base;
-import util.CustomerHelper;
+import testutils.Base;
+import testutils.CustomerHelper;
+
+import com.fasterxml.jackson.databind.JsonNode;
 
 public class CustomersTest extends Base {
 

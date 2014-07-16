@@ -9,8 +9,8 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-import util.Base;
-import util.CustomerHelper;
+import testutils.Base;
+import testutils.CustomerHelper;
 
 public class CustomerTest extends Base {
 	

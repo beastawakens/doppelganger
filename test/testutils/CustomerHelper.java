@@ -1,4 +1,4 @@
-package util;
+package testutils;
 
 import models.Customer;
 import models.Gender;
