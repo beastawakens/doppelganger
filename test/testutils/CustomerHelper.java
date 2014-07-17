@@ -29,16 +29,16 @@ public class CustomerHelper {
 	}
 	
 	public static Customer newBasicCustomer() {
-		Random random = new Random();
 		
 		Customer customer = new Customer();
-		customer.firstName = getSimpleString(random);
-		customer.lastName = getSimpleString(random);
+		customer.firstName = getSimpleString();
+		customer.lastName = getSimpleString();
 
 		return customer;
 	}
 
-	private static String getSimpleString(Random random) {
+	public static String getSimpleString() {
+		Random random = new Random();
 		char nextPrintableChar = '/';
 		do {
 			nextPrintableChar = random.nextPrintableChar();
