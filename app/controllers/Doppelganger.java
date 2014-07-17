@@ -10,6 +10,7 @@ import play.mvc.Result;
 import util.DuplicateIdentifier;
 import util.strategies.CaseInsensitiveLastNameMatcher;
 import util.strategies.JobMatcher;
+import util.strategies.LevenshteinNameMatcher;
 
 public class Doppelganger extends Controller {
 	
@@ -41,7 +42,7 @@ public class Doppelganger extends Controller {
 
 	public static DuplicateIdentifier getDuplicateIdentifier() {
 		if (duplicateIdentifier == null) {
-			duplicateIdentifier = new DuplicateIdentifier(new CaseInsensitiveLastNameMatcher(), new JobMatcher());
+			duplicateIdentifier = new DuplicateIdentifier(new CaseInsensitiveLastNameMatcher(), new JobMatcher(), new LevenshteinNameMatcher(2));
 		}
 		return duplicateIdentifier;
 	}
