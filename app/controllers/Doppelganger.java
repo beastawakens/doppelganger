@@ -8,6 +8,8 @@ import play.libs.Json;
 import play.mvc.Controller;
 import play.mvc.Result;
 import util.DuplicateIdentifier;
+import util.strategies.CaseInsensitiveLastNameMatcher;
+import util.strategies.JobMatcher;
 
 public class Doppelganger extends Controller {
 	
@@ -39,7 +41,7 @@ public class Doppelganger extends Controller {
 
 	public static DuplicateIdentifier getDuplicateIdentifier() {
 		if (duplicateIdentifier == null) {
-			duplicateIdentifier = new DuplicateIdentifier();
+			duplicateIdentifier = new DuplicateIdentifier(new CaseInsensitiveLastNameMatcher(), new JobMatcher());
 		}
 		return duplicateIdentifier;
 	}
