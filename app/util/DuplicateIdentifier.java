@@ -11,27 +11,22 @@ import models.Customer;
 public class DuplicateIdentifier {
 	
 	List<DuplicateStrategy> strategies = new ArrayList<DuplicateStrategy>();
+	private List<Customer> allCustomers;
 
 	public DuplicateIdentifier(DuplicateStrategy... startingStrategies) {
 		this.strategies.addAll(Arrays.asList(startingStrategies));
 	}
 	
 	public Set<Set<Customer>> getDuplicates() {
-		List<Customer> allCustomers = Customer.all();
+		allCustomers = Customer.all();
 		
 		Set<Set<Customer>> allMatches = new HashSet<Set<Customer>>();
 		
-		for (Customer initialCustomer : allCustomers) {
-			Set<Customer> matchesWithInitialCustomer = new HashSet<Customer>();
-			for (Customer customerToCompareAgainst : allCustomers) {
-				if (initialCustomer != customerToCompareAgainst) {
-					if (isAMatch(initialCustomer, customerToCompareAgainst)) {
-						matchesWithInitialCustomer.add(customerToCompareAgainst);
-					}
-				}
-			}
+		for (Customer customer : allCustomers) {
+			Set<Customer> matchesWithInitialCustomer = compareAgainst(customer);
+			
 			if (matchesWithInitialCustomer.size() != 0) {
-				matchesWithInitialCustomer.add(initialCustomer);
+				matchesWithInitialCustomer.add(customer);
 				allMatches.add(matchesWithInitialCustomer);
 			}
 		}
@@ -39,14 +34,23 @@ public class DuplicateIdentifier {
 		return allMatches;
 	}
 
-	private boolean isAMatch(Customer initialCustomer, Customer customerToCompareAgainst) {
-		boolean matches = false;
-		for (DuplicateStrategy strategy : strategies) {
-			if (strategy.doTheseMatch(initialCustomer, customerToCompareAgainst)) {
-				matches = true;
+	private Set<Customer> compareAgainst(Customer initialCustomer) {
+		Set<Customer> matchesWithInitialCustomer = new HashSet<Customer>();
+		for (Customer customerToCompareAgainst : allCustomers) {
+			if ((initialCustomer != customerToCompareAgainst) && (isAMatch(initialCustomer, customerToCompareAgainst))) {
+				matchesWithInitialCustomer.add(customerToCompareAgainst);
 			}
 		}
-		return matches;
+		return matchesWithInitialCustomer;
+	}
+
+	private boolean isAMatch(Customer initialCustomer, Customer customerToCompareAgainst) {
+		for (DuplicateStrategy strategy : strategies) {
+			if (strategy.doTheseMatch(initialCustomer, customerToCompareAgainst)) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	public void addStrategy(DuplicateStrategy strategy) {
