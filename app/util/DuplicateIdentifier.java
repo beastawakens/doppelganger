@@ -10,7 +10,7 @@ import models.Customer;
 
 public class DuplicateIdentifier {
 	
-	List<DuplicateStrategy> strategies = new ArrayList<DuplicateStrategy>();
+	private List<DuplicateStrategy> strategies = new ArrayList<DuplicateStrategy>();
 	private List<Customer> allCustomers;
 
 	public DuplicateIdentifier(DuplicateStrategy... startingStrategies) {

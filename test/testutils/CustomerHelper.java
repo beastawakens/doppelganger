@@ -32,10 +32,19 @@ public class CustomerHelper {
 		Random random = new Random();
 		
 		Customer customer = new Customer();
-		customer.firstName = new Character(random.nextPrintableChar()).toString();
-		customer.lastName = new Character(random.nextPrintableChar()).toString();
+		customer.firstName = getSimpleString(random);
+		customer.lastName = getSimpleString(random);
 
 		return customer;
+	}
+
+	private static String getSimpleString(Random random) {
+		char nextPrintableChar = '/';
+		do {
+			nextPrintableChar = random.nextPrintableChar();
+		} while (nextPrintableChar == '/');
+		
+		return new Character(nextPrintableChar).toString();
 	}
 
 }
